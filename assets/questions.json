@@ -1,0 +1,152 @@
+[
+  {
+    "question": "What is the point inside the Earth where an earthquake originates called?",
+    "options": ["Epicenter", "Hypocenter", "Fault", "Seismograph"],
+    "answer": 1
+  },
+  {
+    "question": "The point on the Earth's surface directly above the earthquake's focus is called?",
+    "options": ["Hypocenter", "Epicenter", "Seismic zone", "Fault line"],
+    "answer": 1
+  },
+  {
+    "question": "Which scale is commonly used to measure the magnitude of an earthquake?",
+    "options": ["Richter Scale", "Beaufort Scale", "Fujita Scale", "Saffir-Simpson Scale"],
+    "answer": 0
+  },
+  {
+    "question": "Which device records the intensity and duration of earthquakes?",
+    "options": ["Barometer", "Seismograph", "Anemometer", "Thermometer"],
+    "answer": 1
+  },
+  {
+    "question": "What type of waves are the first to be detected by a seismograph during an earthquake?",
+    "options": ["Surface waves", "S-waves", "P-waves", "Rayleigh waves"],
+    "answer": 2
+  },
+  {
+    "question": "Which plate boundary is most commonly associated with strong earthquakes?",
+    "options": ["Divergent boundary", "Transform boundary", "Convergent boundary", "Both B and C"],
+    "answer": 3
+  },
+  {
+    "question": "Earthquakes that occur after a major quake are called?",
+    "options": ["Foreshocks", "Aftershocks", "Mainshocks", "Epicenters"],
+    "answer": 1
+  },
+  {
+    "question": "Which country experiences the highest number of earthquakes annually?",
+    "options": ["Japan", "USA", "India", "Italy"],
+    "answer": 0
+  },
+  {
+    "question": "The area along which an earthquake occurs is called?",
+    "options": ["Fault", "Epicenter", "Focus", "Crust"],
+    "answer": 0
+  },
+  {
+    "question": "Which waves cause the most destruction during earthquakes?",
+    "options": ["P-waves", "S-waves", "Surface waves", "Body waves"],
+    "answer": 2
+  },
+  {
+    "question": "Tsunamis are usually caused by what kind of earthquake?",
+    "options": ["Shallow-focus undersea earthquake", "Deep-focus earthquake", "Intraplate earthquake", "Any earthquake"],
+    "answer": 0
+  },
+  {
+    "question": "Which Indian state has the highest earthquake risk?",
+    "options": ["Assam", "Rajasthan", "Kerala", "Punjab"],
+    "answer": 0
+  },
+  {
+    "question": "The point inside the Earth where the rocks rupture during an earthquake is called?",
+    "options": ["Epicenter", "Hypocenter", "Fault line", "Seismic zone"],
+    "answer": 1
+  },
+  {
+    "question": "Which layer of the Earth is primarily involved in earthquakes?",
+    "options": ["Core", "Mantle", "Crust", "Asthenosphere"],
+    "answer": 2
+  },
+  {
+    "question": "Liquefaction occurs due to?",
+    "options": ["High winds", "Earthquake shaking in saturated soil", "Volcanic eruptions", "Tsunami waves"],
+    "answer": 1
+  },
+  {
+    "question": "The Ring of Fire is known for?",
+    "options": ["Earthquakes", "Volcanoes", "Both earthquakes and volcanoes", "Tsunamis only"],
+    "answer": 2
+  },
+  {
+    "question": "Which scale measures the intensity (effects on people and structures) of an earthquake?",
+    "options": ["Richter Scale", "Mercalli Scale", "Fujita Scale", "Beaufort Scale"],
+    "answer": 1
+  },
+  {
+    "question": "What is a fault?",
+    "options": ["A crack in Earth's crust where movement occurs", "A type of earthquake wave", "A volcanic vent", "A tsunami zone"],
+    "answer": 0
+  },
+  {
+    "question": "Which type of earthquake wave cannot travel through liquids?",
+    "options": ["P-waves", "S-waves", "Surface waves", "Rayleigh waves"],
+    "answer": 1
+  },
+  {
+    "question": "Foreshocks occur?",
+    "options": ["After the main earthquake", "Before the main earthquake", "During tsunami", "At epicenter only"],
+    "answer": 1
+  },
+  {
+    "question": "Which region of the world is called the 'seismically most active belt'?",
+    "options": ["The Mediterranean", "The Pacific Ring of Fire", "The Himalayas", "The Sahara"],
+    "answer": 1
+  },
+  {
+    "question": "Which of the following is a safety measure during earthquakes?",
+    "options": ["Stand under a heavy shelf", "Take shelter under a sturdy table", "Run outside immediately", "Hide near windows"],
+    "answer": 1
+  },
+  {
+    "question": "Seismic gaps are?",
+    "options": ["Areas with frequent earthquakes", "Areas with long-term stress but no recent earthquakes", "Faults underwater", "Epicenters of tsunamis"],
+    "answer": 1
+  },
+  {
+    "question": "Richter scale is logarithmic, meaning?",
+    "options": ["Each increase of 1 equals 10 times stronger", "Each increase of 1 equals 2 times stronger", "It measures duration only", "It measures frequency of aftershocks"],
+    "answer": 0
+  },
+  {
+    "question": "Which of these is an earthquake early warning system?",
+    "options": ["Seismograph network", "Weather satellites", "GPS mapping", "Barometer stations"],
+    "answer": 0
+  },
+  {
+    "question": "Deep-focus earthquakes occur at depths greater than?",
+    "options": ["70 km", "300 km", "700 km", "1000 km"],
+    "answer": 2
+  },
+  {
+    "question": "What is the main cause of intraplate earthquakes?",
+    "options": ["Volcanic eruptions", "Stress within a tectonic plate", "Meteor impacts", "Tsunamis"],
+    "answer": 1
+  },
+  {
+    "question": "Which type of earthquake wave arrives second at a seismograph?",
+    "options": ["P-wave", "S-wave", "Surface wave", "L-wave"],
+    "answer": 1
+  },
+  {
+    "question": "Earthquake magnitude 6.0–6.9 is classified as?",
+    "options": ["Moderate", "Strong", "Major", "Great"],
+    "answer": 1
+  },
+  {
+    "question": "The study of earthquakes is called?",
+    "options": ["Volcanology", "Seismology", "Tectonology", "Geology"],
+    "answer": 1
+  }
+]

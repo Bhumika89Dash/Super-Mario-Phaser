@@ -1,105 +1,222 @@
 
 const mushroomsVelocityX = screenWidth / 15;
 
+// function revealHiddenBlock(player, block) {
+//     if (!player.body.blocked.up)
+//         return;
+
+//     this.blockBumpSound.play();
+
+//     if (emptyBlocksList.includes(block))
+//         return;
+
+//     emptyBlocksList.push(block);
+//     block.anims.stop();
+//     block.setTexture('emptyBlock');
+//     this.tweens.add({
+//         targets: block,
+//         duration: 75,
+//         start: performance.now(),
+//         y: block.y - screenHeight / 34.5,
+//         onComplete: function() {
+//             this.tweens.add({
+//                 targets: block,
+//                 duration: 75,
+//                 start: performance.now(),
+//                 y: block.y + screenHeight / 34.5
+//             });
+//         },
+//         onCompleteScope: this
+//     });
+
+//     let random = Phaser.Math.Between(0, 100);
+//     if (random < 90) {
+//         addToScore.call(this, 200, block);
+//         this.coinSound.play();
+//         let coin = this.physics.add.sprite(block.getBounds().x, block.getBounds().y, 'coin').setScale(screenHeight / 357).setOrigin(0).anims.play('coin-default');
+//         coin.immovable = true;
+//         coin.smoothed = true;
+//         coin.depth = 0;
+
+//         this.tweens.add({
+//             targets: coin,
+//             duration: 250,
+//             start: performance.now(),
+//             y: coin.y - (screenHeight / 8.25),
+//             onComplete: function() {
+//                 this.tweens.add({
+//                     targets: coin,
+//                     duration: 250,
+//                     start: performance.now(),
+//                     y: coin.y + (screenHeight / 10.35),
+//                     onComplete: function() {
+//                         coin.destroy();
+//                     }
+//                 });
+//             },
+//             onCompleteScope: this
+//         });
+
+//     } else if (random >= 90 && random < 96 ) {
+//         this.powerUpAppearsSound.play();
+//         let mushroom = this.physics.add.sprite(block.getBounds().x, block.getBounds().y, 'super-mushroom').setScale(screenHeight / 345).setOrigin(0).setBounce(1, 0);
+//         this.tweens.add({
+//             targets: mushroom,
+//             duration: 300,
+//             start: performance.now(),
+//             y: mushroom.y - (screenHeight / 20),
+//             onComplete: function() {
+//                 if (!mushroom)
+//                     return;
+
+//                 if (Phaser.Math.Between(0, 10) <= 4) {
+//                     mushroom.setVelocityX(mushroomsVelocityX)
+//                 } else {
+//                     mushroom.setVelocityX(-mushroomsVelocityX)
+//                 }
+//             },
+//             onCompleteScope: this
+//         });
+//         this.physics.add.overlap(player, mushroom, consumeMushroom, null, this);
+//         this.physics.add.collider(mushroom, this.misteryBlocksGroup.getChildren());
+//         this.physics.add.collider(mushroom, this.blocksGroup.getChildren());
+//         this.physics.add.collider(mushroom, this.platformGroup.getChildren());
+//         this.physics.add.collider(mushroom, this.immovableBlocksGroup.getChildren());
+//         this.physics.add.collider(mushroom, this.constructionBlocksGroup.getChildren());
+//     } else {
+//         this.powerUpAppearsSound.play();
+//         let fireFlower = this.physics.add.sprite(block.getBounds().x, block.getBounds().y, 'fire-flower').setScale(screenHeight / 345).setOrigin(0);
+//         fireFlower.body.immovable = true;
+//         fireFlower.body.allowGravity = false;
+//         fireFlower.anims.play('fire-flower-default', true);
+//         this.tweens.add({
+//             targets: fireFlower,
+//             duration: 300,
+//             start: performance.now(),
+//             y: fireFlower.y - (screenHeight / 23)
+//         });
+//         this.physics.add.overlap(player, fireFlower, consumeFireflower, null, this);
+//         let misteryBlocks = this.misteryBlocksGroup.getChildren();
+//         this.physics.add.collider(fireFlower, misteryBlocks);
+//     }
+// }
+
 function revealHiddenBlock(player, block) {
-    if (!player.body.blocked.up)
-        return;
+    if (!player.body.blocked.up) return;
 
     this.blockBumpSound.play();
 
-    if (emptyBlocksList.includes(block))
-        return;
+    if (emptyBlocksList.includes(block)) return;
 
     emptyBlocksList.push(block);
     block.anims.stop();
     block.setTexture('emptyBlock');
+
+    // Block bounce animation
     this.tweens.add({
         targets: block,
         duration: 75,
-        start: performance.now(),
         y: block.y - screenHeight / 34.5,
         onComplete: function() {
             this.tweens.add({
                 targets: block,
                 duration: 75,
-                start: performance.now(),
                 y: block.y + screenHeight / 34.5
             });
         },
         onCompleteScope: this
     });
 
-    let random = Phaser.Math.Between(0, 100);
-    if (random < 90) {
-        addToScore.call(this, 200, block);
-        this.coinSound.play();
-        let coin = this.physics.add.sprite(block.getBounds().x, block.getBounds().y, 'coin').setScale(screenHeight / 357).setOrigin(0).anims.play('coin-default');
-        coin.immovable = true;
-        coin.smoothed = true;
-        coin.depth = 0;
+    // Pause physics only
+    this.physics.pause();
 
-        this.tweens.add({
-            targets: coin,
-            duration: 250,
-            start: performance.now(),
-            y: coin.y - (screenHeight / 8.25),
-            onComplete: function() {
-                this.tweens.add({
-                    targets: coin,
-                    duration: 250,
-                    start: performance.now(),
-                    y: coin.y + (screenHeight / 10.35),
-                    onComplete: function() {
-                        coin.destroy();
-                    }
-                });
-            },
-            onCompleteScope: this
+    // Show overlay and quiz popup
+    showQuizPopup.call(this, block);
+}
+
+function showQuizPopup(block) {
+    // Safety check: make sure questions are loaded
+    if (!this.questions || this.questions.length === 0) {
+        console.warn('No questions loaded!');
+        this.physics.resume(); // resume game if no questions
+        return;
+    }
+
+    // Pick a random question from loaded JSON
+    let questionIndex = Phaser.Math.Between(0, this.questions.length - 1);
+    let q = this.questions[questionIndex];
+
+    // Center on the camera
+    const cam = this.cameras.main;
+    const centerX = cam.scrollX + screenWidth / 2;
+    const centerY = cam.scrollY + screenHeight / 2;
+
+    // Dark semi-transparent overlay
+    let overlay = this.add.rectangle(centerX, centerY, screenWidth, screenHeight, 0x000000, 0.5)
+        .setOrigin(0.5)
+        .setDepth(1000);
+
+    // Whiteboard for the question
+    let whiteboard = this.add.image(centerX, centerY - 100, 'whiteboard')
+        .setOrigin(0.5)
+        .setDepth(1001);
+    whiteboard.setDisplaySize(screenWidth / 1.5, screenHeight / 2.5);
+
+    // Question text on whiteboard
+    let questionText = this.add.text(centerX, centerY - 130, q.question, {
+        fontSize: '24px',
+        color: '#000',
+        wordWrap: { width: screenWidth / 1.7, useAdvancedWrap: true },
+        align: 'center'
+    }).setOrigin(0.5).setDepth(1002);
+
+    // Option buttons
+    let optionButtons = [];
+    const spacingY = 60; // vertical spacing
+    const startY = centerY - 20;
+
+    for (let i = 0; i < q.options.length; i++) {
+        // Option background image
+        let optionBg = this.add.image(centerX, startY + i * spacingY, 'option')
+            .setOrigin(0.5)
+            .setDepth(1001);
+        optionBg.setDisplaySize(screenWidth / 3, screenHeight / 12);
+
+        // Option text
+        let optionText = this.add.text(centerX, startY + i * spacingY, q.options[i], {
+            fontSize: '22px',
+            color: '#fff',
+            align: 'center',
+            wordWrap: { width: screenWidth / 3.2 }
+        }).setOrigin(0.5)
+          .setDepth(1002);
+
+        // Make clickable
+        optionBg.setInteractive({ useHandCursor: true });
+        optionBg.on('pointerdown', () => {
+            if (i === q.answer) {
+                addToScore.call(this, 1000, block);
+                this.coinSound.play();
+            }
+
+            // Destroy popup elements
+            overlay.destroy();
+            whiteboard.destroy();
+            questionText.destroy();
+            optionButtons.forEach(btn => {
+                btn.bg.destroy();
+                btn.text.destroy();
+            });
+
+            // Resume physics
+            this.physics.resume();
         });
 
-    } else if (random >= 90 && random < 96 ) {
-        this.powerUpAppearsSound.play();
-        let mushroom = this.physics.add.sprite(block.getBounds().x, block.getBounds().y, 'super-mushroom').setScale(screenHeight / 345).setOrigin(0).setBounce(1, 0);
-        this.tweens.add({
-            targets: mushroom,
-            duration: 300,
-            start: performance.now(),
-            y: mushroom.y - (screenHeight / 20),
-            onComplete: function() {
-                if (!mushroom)
-                    return;
-
-                if (Phaser.Math.Between(0, 10) <= 4) {
-                    mushroom.setVelocityX(mushroomsVelocityX)
-                } else {
-                    mushroom.setVelocityX(-mushroomsVelocityX)
-                }
-            },
-            onCompleteScope: this
-        });
-        this.physics.add.overlap(player, mushroom, consumeMushroom, null, this);
-        this.physics.add.collider(mushroom, this.misteryBlocksGroup.getChildren());
-        this.physics.add.collider(mushroom, this.blocksGroup.getChildren());
-        this.physics.add.collider(mushroom, this.platformGroup.getChildren());
-        this.physics.add.collider(mushroom, this.immovableBlocksGroup.getChildren());
-        this.physics.add.collider(mushroom, this.constructionBlocksGroup.getChildren());
-    } else {
-        this.powerUpAppearsSound.play();
-        let fireFlower = this.physics.add.sprite(block.getBounds().x, block.getBounds().y, 'fire-flower').setScale(screenHeight / 345).setOrigin(0);
-        fireFlower.body.immovable = true;
-        fireFlower.body.allowGravity = false;
-        fireFlower.anims.play('fire-flower-default', true);
-        this.tweens.add({
-            targets: fireFlower,
-            duration: 300,
-            start: performance.now(),
-            y: fireFlower.y - (screenHeight / 23)
-        });
-        this.physics.add.overlap(player, fireFlower, consumeFireflower, null, this);
-        let misteryBlocks = this.misteryBlocksGroup.getChildren();
-        this.physics.add.collider(fireFlower, misteryBlocks);
+        optionButtons.push({ bg: optionBg, text: optionText });
     }
 }
+
+
 
 function destroyBlock(player, block) {
     if (!player.body.blocked.up)

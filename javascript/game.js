@@ -166,7 +166,7 @@ function preload() {
 
     // Load entities sprites
     this.load.spritesheet('mario', 'assets/entities/mario.png', { frameWidth: 18, frameHeight: 16 });
-    this.load.spritesheet('mario-grown', 'assets/entities/mario-grown.png', { frameWidth: 18, frameHeight: 32 });
+    this.load.spritesheet('mario-grown', '/assets/entities/flood-mario-two.png', { frameWidth: 18, frameHeight: 32 });
     this.load.spritesheet('mario-fire', 'assets/entities/mario-fire.png', { frameWidth: 18, frameHeight: 32 });
     this.load.spritesheet('goomba', 'assets/entities/' + levelStyle + '/goomba.png', { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('koopa', 'assets/entities/koopa.png', { frameWidth: 16, frameHeight: 24 });
@@ -188,6 +188,11 @@ function preload() {
     this.load.image('flag-mast', 'assets/scenery/flag-mast.png');
     this.load.image('final-flag', 'assets/scenery/final-flag.png');
     this.load.image('sign', 'assets/scenery/sign.png');
+
+    //image for the popup
+    this.load.image('option', 'assets/popup_quiz/option.png');
+    this.load.image('whiteboard', 'assets/popup_quiz/whiteboard.png');
+    this.load.json('questions', 'assets/questions.json');
 
     // Load tubes
     this.load.image('horizontal-tube', 'assets/scenery/horizontal-tube.png');
@@ -341,6 +346,10 @@ function create() {
     applySettings.call(this);
     
     smoothedControls = new SmoothedHorionztalControl(0.001);
+
+       // ⬇️ Add this line so showQuizPopup can use the data
+    this.questions = this.cache.json.get('questions');
+    console.log('Loaded questions:', this.questions);
 }
 
 function createControls() {
